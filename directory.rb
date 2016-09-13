@@ -1,16 +1,23 @@
 
 def input_students
-  puts "Please enter the names of the students"
-  puts "To finish, just hit return twice"
 
   students = []
 
+  puts "To finish, just hit return twice"
+
+  puts "Please enter the name of the student:"
+
   name = gets.chomp
 
-  while !name.empty? do
-    students << {name: name, cohort: :november}
-    puts "now we have #{students.count} students"
+  puts "and now please enter the student's favorite hobby:"
+
+  hobby = gets.chomp
+
+  while !name.empty? || !hobby.empty? do
+    students << {name: name, hobby: hobby, cohort: :november}
+    puts "now we have #{students.count} students. Please enter another name and hobby:"
     name = gets.chomp
+    hobby = gets.chomp
 
   end
 
@@ -25,7 +32,7 @@ end
 
 def print(students)
   students.each_with_index do |student, index|
-    puts "#{index} #{student[:name]} (#{student[:cohort]} cohort)"
+    puts "#{index} #{student[:name]} #{student[:hobby]} (#{student[:cohort]} cohort)"
   end
 end
 
@@ -48,7 +55,7 @@ end
 
 students = input_students
 print_header
-#print(students)
-print_12(students)
+print(students)
+#print_12(students)
 print_letter(students)
 print_footer(students)
