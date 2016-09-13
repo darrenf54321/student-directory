@@ -6,28 +6,31 @@ def input_students
   puts "To finish, just hit return twice"
 
   puts "Please enter the name of the student:"
-
   name = gets.chomp
 
   puts "and now please enter the student's favorite hobby:"
-
   hobby = gets.chomp
 
-  while !name.empty? || !hobby.empty? do
-    students << {name: name, hobby: hobby, cohort: :november}
-    puts "now we have #{students.count} students. Please enter another name and hobby:"
+  puts "and finally, the student's age:"
+  age = gets.chomp
+
+  while !name.empty? do
+    students << {name: name, hobby: hobby, age: age, cohort: :november}
+    puts "now we have #{students.count} students. Please enter another name:"
     name = gets.chomp
+    puts "......and the student's hobby:"
     hobby = gets.chomp
+    puts "and finally, please enter the student's age:"
+    age = gets.chomp
 
   end
-
   students
 end
 
 
 def print_header
-  puts "The students of Villains Academy"
-  puts "-------------"
+  puts "The students of Villains Academy".center(50)
+  puts "-------------".center(50)
 end
 
 def print(students)
@@ -57,5 +60,5 @@ students = input_students
 print_header
 print(students)
 #print_12(students)
-print_letter(students)
+#print_letter(students)
 print_footer(students)
