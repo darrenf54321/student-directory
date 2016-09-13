@@ -29,10 +29,18 @@ def print(students)
   end
 end
 
+#Modify your program to only print the students whose name begins with a specific letter.
 def print_letter(students)
   letter = "a"
-  puts students.select {|person| person[:name][0] == "a"}
+  puts students.select {|person| person[:name][0] == letter}
 end
+
+#Modify your program to only print the students whose name is shorter than 12 characters.
+def print_12(students)
+  number = 12
+  puts students.select {|person| person[:name].length < number}
+end
+
 
 def print_footer(names)
   puts "Overall, we have #{names.count} great students."
@@ -41,5 +49,6 @@ end
 students = input_students
 print_header
 #print(students)
-print_footer(students)
+print_12(students)
 print_letter(students)
+print_footer(students)
