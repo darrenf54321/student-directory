@@ -29,11 +29,17 @@ def print(students)
   end
 end
 
+def print_letter(students)
+  letter = "a"
+  puts students.select {|person| person[:name][0] == "a"}
+end
+
 def print_footer(names)
   puts "Overall, we have #{names.count} great students."
 end
 
 students = input_students
 print_header
-print(students)
+#print(students)
 print_footer(students)
+print_letter(students)
