@@ -1,4 +1,3 @@
-
 def input_students
 
   students = []
@@ -11,17 +10,31 @@ def input_students
   puts "and now please enter the student's favorite hobby:"
   hobby = gets.chomp
 
-  puts "and finally, the student's age:"
+  puts "please enter the student's age:"
   age = gets.chomp
 
+  puts "Which cohort is the student entering: "
+  cohort = gets.chomp
+    if cohort == ""
+      cohort = "November"
+    else cohort = cohort
+    end
+
+
   while !name.empty? do
-    students << {name: name, hobby: hobby, age: age, cohort: :november}
+    students << {name: name, hobby: hobby, age: age, cohort: cohort}
     puts "now we have #{students.count} students. Please enter another name:"
     name = gets.chomp
     puts "......and the student's hobby:"
     hobby = gets.chomp
-    puts "and finally, please enter the student's age:"
+    puts "please enter the student's age:"
     age = gets.chomp
+    puts "which cohort will the student be entering?"
+    cohort = gets.chomp
+    if cohort == ""
+      cohort = "November"
+    else cohort = cohort
+    end
 
   end
   students
@@ -35,7 +48,7 @@ end
 
 def print(students)
   students.each_with_index do |student, index|
-    puts "#{index} #{student[:name]} #{student[:hobby]} (#{student[:cohort]} cohort)"
+    puts "#{index} #{student[:name]} #{student[:hobby]} #{student[:age]} (#{student[:cohort]} cohort)"
   end
 end
 
