@@ -1,3 +1,4 @@
+
 def input_students
 
   students = []
@@ -9,6 +10,12 @@ def input_students
 
   puts "and now please enter the student's favorite hobby:"
   hobby = gets.chomp
+    if hobby.empty?
+      puts "Please enter a hobby:"
+      hobby = gets.chomp
+    else
+      hobby = hobby
+    end
 
   puts "please enter the student's age:"
   age = gets.chomp
@@ -26,6 +33,12 @@ def input_students
     puts "now we have #{students.count} students. Please enter another name:"
     name = gets.chomp
     puts "......and the student's hobby:"
+      if hobby.empty?
+        puts "Please enter a hobby:"
+        hobby = gets.chomp
+      else
+        hobby = hobby
+      end
     hobby = gets.chomp
     puts "please enter the student's age:"
     age = gets.chomp
@@ -39,7 +52,6 @@ def input_students
   end
   students
 end
-
 
 def print_header
   puts "The students of Villains Academy".center(50)
