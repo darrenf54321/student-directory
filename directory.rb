@@ -1,4 +1,3 @@
-
 def input_students
 
   students = []
@@ -29,27 +28,40 @@ def input_students
 
 
   while !name.empty? do
-    students << {name: name, hobby: hobby, age: age, cohort: cohort}
-    puts "now we have #{students.count} students. Please enter another name:"
-    name = gets.chomp
-    puts "......and the student's hobby:"
-      if hobby.empty?
-        puts "Please enter a hobby:"
-        hobby = gets.chomp
-      else
-        hobby = hobby
-      end
-    hobby = gets.chomp
-    puts "please enter the student's age:"
-    age = gets.chomp
-    puts "which cohort will the student be entering?"
-    cohort = gets.chomp
-    if cohort == ""
-      cohort = "November"
-    else cohort = cohort
-    end
 
-  end
+  students << {name: name, hobby: hobby, age: age, cohort: cohort}
+
+    if students.count > 1
+      puts "now we have #{students.count} students. Please enter another name:"
+    else
+      puts "now we have #{students.count} student. Please enter another name:"
+    end
+    name = gets.chomp
+
+      if name == ""
+        break
+      else
+
+        puts "......and the student's hobby:"
+          hobby = gets.chomp
+            while hobby.empty? do
+              puts "Please enter a hobby:"
+              hobby = gets.chomp
+            end
+
+
+        puts "please enter the student's age:"
+        age = gets.chomp
+
+        puts "which cohort will the student be entering?"
+        cohort = gets.chomp
+          if cohort == ""
+            cohort = "November"
+          else cohort = cohort
+          end
+
+        end
+    end
   students
 end
 
