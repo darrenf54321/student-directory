@@ -1,7 +1,6 @@
 @students = []
 def input_students
 
-
   puts "To finish, just hit return twice"
 
   puts "Please enter the name of the student:"
@@ -71,28 +70,35 @@ end
 
 
 def interactive_menu
-
   loop do
-    puts "1. Input the students"
-    puts "2. Show the students"
-    puts "9. Exit"
+    print_menu
+    process(gets.chomp)
+  end
+end
 
-    selection = gets.chomp
-
-    case selection
-
+def process(selection)
+  case selection
     when "1"
-      student = input_students
+      input_students
     when "2"
-      print_header
-      print(@students)
-      print_footer(@students)
+      show_students
     when "9"
       exit
     else
       puts "I don't know what you mean. Try again"
     end
   end
+
+def print_menu
+  puts "1. Input the students"
+  puts "2. Show the students"
+  puts "9. Exit"
+end
+
+def show_students
+  print_header
+  print_students_list
+  print_footer
 end
 
 
@@ -101,7 +107,7 @@ def print_header
   puts "-------------".center(50)
 end
 
-def print(students)
+def print_students_list
   @students.each_with_index do |student, index|
     puts "#{index} #{student[:name]} #{student[:hobby]} #{student[:age]} (#{student[:cohort]} cohort)"
   end
@@ -120,14 +126,14 @@ def print_12(students)
 end
 
 
-def print_footer(names)
-  puts "Overall, we have #{names.count} great students."
+def print_footer
+  puts "Overall, we have #{@students.count} great students."
 end
 
 interactive_menu
 students = input_students
 print_header
-print(students)
+print_students_list
 #print_12(students)
 #print_letter(students)
-print_footer(students)
+print_footer
