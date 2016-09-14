@@ -1,73 +1,19 @@
-@students = []
+@students = [] # an empty array accessible to all methods
+
 def input_students
-
+  puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
-
-  puts "Please enter the name of the student:"
+  # get the first name
   name = gets.chomp
-
-  puts "and now please enter the student's favorite hobby:"
-  hobby = gets.chomp
-    while hobby.empty?
-      puts "Please enter a hobby:"
-      hobby = gets.chomp
-    end
-
-  puts "please enter the student's age:"
-  age = gets.chomp
-    while age.empty?
-      puts "Please enter the student's age:"
-      age = gets.chomp
-    end
-
-  puts "Which cohort is the student entering: "
-  cohort = gets.chomp
-    if cohort.empty?
-      cohort = "November"
-    else cohort = cohort
-    end
-
+  # while the name is not empty, repeat this code
   while !name.empty? do
-
-  @students << {name: name, hobby: hobby, age: age, cohort: cohort}
-
-    if @students.count > 1
-      puts "now we have #{@students.count} students. Please enter another name:"
-    else
-      puts "now we have #{@students.count} student. Please enter another name:"
-    end
+    # add the student hash to the array
+    @students << {name: name, cohort: :november}
+    puts "Now we have #{@students.count} students"
+    # get another name from the user
     name = gets.chomp
-
-      if name.empty?
-        break
-      else
-
-        puts "......and the student's hobby:"
-        hobby = gets.chomp
-          while hobby.empty? do
-            puts "Please enter a hobby:"
-            hobby = gets.chomp
-          end
-
-        puts "please enter the student's age:"
-        age = gets.chomp
-          while age.empty? do
-            puts "Please enter the student's age:"
-            age = gets.chomp
-          end
-
-        puts "which cohort will the student be entering?"
-        cohort = gets.chomp
-          if cohort.empty?
-            cohort = "November"
-          else cohort = cohort
-          end
-
-        end
-    end
-  @students
+  end
 end
-
 
 def interactive_menu
   loop do
@@ -131,9 +77,3 @@ def print_footer
 end
 
 interactive_menu
-students = input_students
-print_header
-print_students_list
-#print_12(students)
-#print_letter(students)
-print_footer
