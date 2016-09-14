@@ -1,7 +1,6 @@
-
+@students = []
 def input_students
 
-  students = []
 
   puts "To finish, just hit return twice"
 
@@ -31,12 +30,12 @@ def input_students
 
   while !name.empty? do
 
-  students << {name: name, hobby: hobby, age: age, cohort: cohort}
+  @students << {name: name, hobby: hobby, age: age, cohort: cohort}
 
-    if students.count > 1
-      puts "now we have #{students.count} students. Please enter another name:"
+    if @students.count > 1
+      puts "now we have #{@students.count} students. Please enter another name:"
     else
-      puts "now we have #{students.count} student. Please enter another name:"
+      puts "now we have #{@students.count} student. Please enter another name:"
     end
     name = gets.chomp
 
@@ -67,8 +66,35 @@ def input_students
 
         end
     end
-  students
+  @students
 end
+
+
+def interactive_menu
+
+  loop do
+    puts "1. Input the students"
+    puts "2. Show the students"
+    puts "9. Exit"
+
+    selection = gets.chomp
+
+    case selection
+
+    when "1"
+      student = input_students
+    when "2"
+      print_header
+      print(@students)
+      print_footer(@students)
+    when "9"
+      exit
+    else
+      puts "I don't know what you mean. Try again"
+    end
+  end
+end
+
 
 def print_header
   puts "The students of Villains Academy".center(50)
@@ -76,7 +102,7 @@ def print_header
 end
 
 def print(students)
-  students.each_with_index do |student, index|
+  @students.each_with_index do |student, index|
     puts "#{index} #{student[:name]} #{student[:hobby]} #{student[:age]} (#{student[:cohort]} cohort)"
   end
 end
@@ -98,6 +124,7 @@ def print_footer(names)
   puts "Overall, we have #{names.count} great students."
 end
 
+interactive_menu
 students = input_students
 print_header
 print(students)
