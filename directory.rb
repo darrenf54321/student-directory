@@ -1,3 +1,4 @@
+
 def input_students
 
   students = []
@@ -9,23 +10,24 @@ def input_students
 
   puts "and now please enter the student's favorite hobby:"
   hobby = gets.chomp
-    if hobby.empty?
+    while hobby.empty?
       puts "Please enter a hobby:"
       hobby = gets.chomp
-    else
-      hobby = hobby
     end
 
   puts "please enter the student's age:"
   age = gets.chomp
+    while age.empty?
+      puts "Please enter the student's age:"
+      age = gets.chomp
+    end
 
   puts "Which cohort is the student entering: "
   cohort = gets.chomp
-    if cohort == ""
+    if cohort.empty?
       cohort = "November"
     else cohort = cohort
     end
-
 
   while !name.empty? do
 
@@ -38,24 +40,27 @@ def input_students
     end
     name = gets.chomp
 
-      if name == ""
+      if name.empty?
         break
       else
 
         puts "......and the student's hobby:"
-          hobby = gets.chomp
-            while hobby.empty? do
-              puts "Please enter a hobby:"
-              hobby = gets.chomp
-            end
-
+        hobby = gets.chomp
+          while hobby.empty? do
+            puts "Please enter a hobby:"
+            hobby = gets.chomp
+          end
 
         puts "please enter the student's age:"
         age = gets.chomp
+          while age.empty? do
+            puts "Please enter the student's age:"
+            age = gets.chomp
+          end
 
         puts "which cohort will the student be entering?"
         cohort = gets.chomp
-          if cohort == ""
+          if cohort.empty?
             cohort = "November"
           else cohort = cohort
           end
