@@ -37,7 +37,7 @@ def input_students
   puts "To finish, just hit return twice"
   name = STDIN.gets.chomp
   while !name.empty? do
-    @students << {name: name, cohort: :november}
+    access_students(name, cohort = "November")
     puts "#{name} has been added to the database." #feedback to user 14.4
     puts "Now we have #{@students.count} students"
     name = STDIN.gets.chomp
@@ -87,7 +87,7 @@ def load_students(filename = "students.csv")
   File.open(filename, "r") do |file| #Ch14.6 Using code block to open file
     file.readlines.each do |line|
       name, cohort = line.chomp.split(',')
-      @students << {name: name, cohort: cohort.to_sym}
+      access_students(name, cohort) #Ch14.1
       end
     end
 end
@@ -105,6 +105,10 @@ def startup_load
       puts "Silly Billy! #{filename} doesn't exist!"
       exit
     end
+end
+
+def access_students(name, cohort)
+  @students << {name: name, cohort: cohort.to_sym}
 end
 
 startup_load
