@@ -38,6 +38,7 @@ def input_students
   name = STDIN.gets.chomp
   while !name.empty? do
     @students << {name: name, cohort: :november}
+    puts "#{name} has been added to the database." #feedback to user 14.4
     puts "Now we have #{@students.count} students"
     name = STDIN.gets.chomp
   end
@@ -65,29 +66,31 @@ def print_footer
 end
 
 def save_students
-  file = File.open("students.csv", "w")
-  @students.each do |student|
-    student_data = [student[:name], student[:cohort]]
-    csv_line = student_data.join(",")
-    file.puts csv_line
+  File.open("students.csv", "w") do |file| #Ch14.6 Using code block to open file
+    @students.each do |student|
+      student_data = [student[:name], student[:cohort]]
+      csv_line = student_data.join(",")
+      file.puts csv_line
+    end
+  puts "The information has been saved to the database." #feedback to user 14.4
   end
-  file.close
-  puts "The information has been saved to the database."
 end
 
 def load_students(filename = "students.csv")
-  file = File.open(filename, "r")
-  file.readlines.each do |line|
-    name, cohort = line.chomp.split(',')
-      @students << {name: name, cohort: cohort.to_sym}
-    end
-    file.close
+  File.open(filename, "r") do |file| #Ch14.6 Using code block to open file
+    file.readlines.each do |line|
+      name, cohort = line.chomp.split(',')
+        @students << {name: name, cohort: cohort.to_sym}
+      end
   end
+    puts "The data has been loaded." #feedback to user 14.4
+end
 
   def try_load_students
     filename = ARGV.first
     if filename.nil?
       load_students("students.csv") #Ch14.2 students.csv loads by default
+      puts "Loaded students.csv by default."
     elsif File.exist?(filename)
       load_students(filename)
       puts "Loaded #{@students.count} from #{filename}"
