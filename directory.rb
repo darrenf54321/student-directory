@@ -72,6 +72,7 @@ def save_students
     file.puts csv_line
   end
   file.close
+  puts "The information has been saved to the database."
 end
 
 def load_students(filename = "students.csv")
@@ -83,17 +84,18 @@ def load_students(filename = "students.csv")
     file.close
   end
 
-def try_load_students
-  filename = ARGV.first
-  return if filename.nil?
-  if File.exist?(filename)
-    load_students(filename)
-    puts "Loaded #{@students.count} from #{filename}"
-  else
-    puts "Silly Billy! #{filename} doesn't exist!"
-    exit
+  def try_load_students
+    filename = ARGV.first
+    if filename.nil?
+      load_students("students.csv") #Ch14.2 students.csv loads by default
+    elsif File.exist?(filename)
+      load_students(filename)
+      puts "Loaded #{@students.count} from #{filename}"
+    else
+      puts "Silly Billy! #{filename} doesn't exist!"
+      exit
+    end
   end
-end
 
 try_load_students
 interactive_menu
