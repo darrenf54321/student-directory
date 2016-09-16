@@ -28,7 +28,7 @@ def process(selection)
     when "9"
       exit
     else
-      puts "I don't know what you mean. Try again"
+      error_message
     end
   end
 
@@ -57,7 +57,7 @@ end
 
 def print_students_list
   @students.each_with_index do |student, index|
-    puts "#{index} #{student[:name]} #{student[:hobby]} #{student[:age]} (#{student[:cohort]} cohort)"
+    puts "#{index} #{student[:name]} (#{student[:cohort]} cohort)"
   end
 end
 
@@ -75,11 +75,10 @@ def save_students
         csv_line = student_data.join(",")
         file.puts csv_line
         end
-    puts "The information has been saved to the database." #feedback to user 14.4
+    puts "The information has been saved to the #{filename} file." #feedback to user 14.4
     end
   else
-    puts "Ooops. That file does not exist."
-
+    error_message
   end
 end
 
@@ -102,13 +101,17 @@ def startup_load
       load_students(filename)
       puts "Loaded #{@students.count} student(s) from #{filename}"
     else
-      puts "Silly Billy! #{filename} doesn't exist!"
+      error_message
       exit
     end
 end
 
 def access_students(name, cohort)
   @students << {name: name, cohort: cohort.to_sym}
+end
+
+def error_message
+  puts "Oh no, something has gone wrong. Try again!"
 end
 
 startup_load
